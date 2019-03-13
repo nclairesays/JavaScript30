@@ -59,6 +59,41 @@
 
 <script>
 
+
+
+  playSound = (e) => {
+    // console.log(e.keyCode)
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`)
+
+    if(!audio) return;
+    audio.currentTime = 0
+    audio.play()
+    // if you call .play on an audio element that's already playing, it won't play  again; until the prev audio is done
+    // so we want it to rewind start with currentTime every time you click
+
+
+    const key = document.querySelector(`.key[data-key="${e.keyCode}"]`)
+    key.classList.add('playing')  //adding a class of playing
+    // key.classList.remove('playing')  
+    // key.classList.toggle('playing')  
+
+    // at this point, it will transition and show the yellow divs but it won't remove. need a transition end event. 
+    // queryselector for all the divs with class of key
+    console.log(e)
+  }
+  
+  function removeTransition(e) {
+    if (e.propertyName !== 'transform') return; // skip it if it's not a transform
+    this.classList.remove('playing')
+
+  }
+
+  const keys = document.querySelectorAll('.key')
+  keys.forEach( key => key.addEventListener('transitionend', removeTransition))
+
+
+  window.addEventListener('keydown', playSound)
+  
 </script>
 
 
