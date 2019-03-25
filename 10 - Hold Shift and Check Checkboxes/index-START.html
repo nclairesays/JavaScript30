@@ -106,12 +106,10 @@ let lastChecked;
 function onClick (e) {
   //check if they have the shift key down AND check that they are checking it
   let inBetween = false
-  console.log(e, this.checked)
   if (e.shiftKey && this.checked) {
-    //loop over every single checkbox
-    checkboxes.forEach(checkbox => {
-      if (checkbox === this || checkbox === lastChecked) { //allows yout to do reverse order too
-        inBetween = !inBetween // variable toggles true when first condition meets during the loop; then changes to false when second condition meets
+    checkboxes.forEach(checkbox => {  //loop over every single checkbox
+      if (checkbox === this || checkbox === lastChecked) { //allows for reverse order too
+        inBetween = !inBetween // variable toggles true when first condition meets during the loop; then changes to false when second condition is met
       }
       if (inBetween) {
         checkbox.checked = true
