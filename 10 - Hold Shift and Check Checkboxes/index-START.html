@@ -96,6 +96,35 @@
   </div>
 
 <script>
+// looping through everyone (rather than checking parents/child/WHERE the checked are placed in the dom)
+// and using the start and end to determine what's in between
+// learned there was shift key as a separate attribute and don't need to use keycode ==16
+
+  
+const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]')
+let lastChecked;
+function onClick (e) {
+  //check if they have the shift key down AND check that they are checking it
+  let inBetween = false
+  if (e.shiftKey && this.checked) {
+    checkboxes.forEach(checkbox => {  //loop over every single checkbox
+      if (checkbox === this || checkbox === lastChecked) { //allows for reverse order too
+        inBetween = !inBetween // variable toggles true when first condition meets during the loop; then changes to false when second condition is met
+      }
+      if (inBetween) {
+        checkbox.checked = true
+      }
+    })
+  }
+  lastChecked = this
+}
+
+
+checkboxes.forEach( i => {
+  i.addEventListener('click', onClick)
+
+})
+
 </script>
 </body>
 </html>

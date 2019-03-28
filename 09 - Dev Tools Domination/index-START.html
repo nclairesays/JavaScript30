@@ -17,29 +17,77 @@
       p.style.fontSize = '50px';
     }
 
-    // Regular
+    /*
+      TO FIND WHERE THE ATTRIBUTE CHANGES IN JS CODE
+      in devtools > right click on dom element > Break on > attribute moddificion
+    */
 
+    // Regular
+      console.log('regular console.log')
     // Interpolated
+      console.log('Hello I am %s string', 'this will go in % s')
+      console.log(`or use ES6 backticks to ${'interpolate'}`)
 
     // Styled
-
+      console.log('%c I am some styled text', 'font-size: 20px; background: red; text-shadow: 10px 10px blue')
     // warning!
+      console.warn('OH NO WARN!')
 
     // Error :|
+      console.error('OH NO ERROR!')
 
     // Info
+      console.info('INFO HERE - but this looks normal? supposed to have an i in front')
 
-    // Testing
-
-    // clearing
+    // Testing  - using assert and contains
+      console.assert( 1 === 2, 'assert will only show if the first argument is wrong')
+      
+      const p = document.querySelector('p')
+      console.assert(p.classList.contains('ouch'), 'Nope, p does not contain ouch')
+      
+  
 
     // Viewing DOM Elements
+      console.log(p)
+      console.dir(p) //allows you to open it up and see all the methods and properties that lives on that element
 
-    // Grouping together
+    // Grouping together 
+    // so it's easier to read on the console; able to collapse
+      dogs.forEach(dog => {
+        console.group(`${dog.name}`) // this will log them opened already
+        // console.groupCollapsed(`${dog.name}`) // this will automatically collapse them
+          console.log(`this is ${dog.name}`)
+          console.log(`${dog.name} is ${dog.age} years old`)
+          console.log(`${dog.name} is ${dog.age*7} dog years old`)
+        console.groupEnd(`${dog.name}`) // pass the same string that you used to define that group
+        
+      })
+
+   // timing
+
+   console.time('fetching data use same string')
+    fetch('https://api.github.com/users/nclairesays')
+    .then(data => data.json())
+    .then(data => {
+      console.timeEnd('fetching data use same string')
+      console.log(data) // tells you how long it took to fetch the data
+    })
 
     // counting
+    // tells you how many there are real time
 
-    // timing
+      console.count('Wes')
+      console.count('Wes')
+      console.count('Bobby')
+      console.count('Wes')
+      console.count('Bobby')
+      console.count('Bobby')
+      console.count('Wes')
+
+
+  // clearing
+  // console.clear();
+ 
 
   </script>
 </body>
