@@ -7,6 +7,26 @@
 </head>
 <body>
 <script>
+  // sequence of keys will trigger a command; easter eggs
+
+
+const pressed = []
+const secretCode = 'fools'
+window.addEventListener('keyup', (e) => {
+  
+  pressed.push(e.key) 
+  pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length)
+
+  console.log(e.key, pressed)
+
+  if (pressed.join('').includes(secretCode)) {
+    console.log("Easter Egg Combo - HAPPY APRIL FOOLS DAY")
+    cornify_add()
+  }
+  
+  
+})
+
 </script>
 </body>
 </html>
