@@ -58,6 +58,32 @@
       };
     }
 
+    const sliderImages = document.querySelectorAll('.slide-in');
+    function checkSlide(e){
+      sliderImages.forEach(sliderImage => {
+        //halfway through image
+        const slideInAt = window.scrollY + window.innerHeight  //window.scrollY tells you how many pixels scrolled from the very top of the browser; but we want from the bottom of our viewport
+        slideInAt - sliderImage.height/2 //this will give the pixel level where the image will slide in at (half way through picture)
+      
+        //check where the bottom is, if we slide past the image, it should slide itself back out;  for when we scroll back up
+        const imageBottom = sliderImage.offsetTop + sliderImage.height// offsetTop is how far from the top of the window
+        
+        const isHalfShown = slideInAt > sliderImage.offsetTop
+        const isNotScrolledPast = window.scrollY < imageBottom
+
+        if (isHalfShown && isNotScrolledPast) {
+          sliderImage.classList.add('active')
+        } else {
+          sliderImage.classList.remove('active')
+        }
+      })
+    }
+
+    window.addEventListener('scroll', debounce(checkSlide)) // make sure to debounce scroll functions to help with performance 
+
+
+
+
   </script>
 
   <style>
